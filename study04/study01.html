@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- <link rel="stylesheet" href=" https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"></link>-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/cesiumjs/1.78/Build/Cesium/Cesium.js"></script>
+    <script>
+        <!--        html 및 리소스와 관련된 모든 내용이 로딩된 이후에 발생하는 이벤트-->
+        //  html 코드만 모두 로딩후 아래의 자바스크립트가 동작하는 이벤트
+        window.onload = function (){
+            //getElementById() : 지정한 id값을 가지고 있는 html태그를 선택
+            let btn03 = document.getElementById("btn03"); //id만 가져옴
+            //해당 태그에 이벤트를 직접 적용
+            // document.get~~ id, classname, tagname 등 다양한 종류있다.
+            // btn03.onclick = function (){  //옛날방식
+            //     alert("클릭 이벤트 발생");
+            // }
+
+            //함수를 미리 생성하고 이벤트에 함수를 입력하는 것도 가능
+            btn03.onclick = clickEvent; //미리 만들어놓은 함수 사용가능.
+
+
+
+
+            //querySelector(): 지정한 선택자를 가지고 있는 html태그를 선택
+            let subDiv = document.querySelector("#sub-div"); //앞에 #붙어있다.->id가져옴. (.)->class가져옴
+            // 자바스크립트의 이벤트리스너에 이벤트를 등록
+            subDiv.addEventListener("click", function (){  //요즘 권장하는 방식.addEventListener 사용.
+                alert("div 태그 안에서 클릭 이벤트 발생")
+            });
+            //미리 생성해 놓은 함수를 콜백함수로 사용할 수 있다.
+            subDiv.addEventListener("click", clickEvent); //이런 방식도 있다.
+        };
+
+        // window.addEventListener("DOMContentLoaded", function (){
+        //     alert("div 태그 안에서 클릭 이벤트 발생")
+        // })
+
+        function clickEvent(){
+            alert("클릭이벤트가 발생했습니다.");
+        }
+    </script>
+    <script>
+        $(document).ready(function (){
+            $("#btn04").on("click",function (){  //on이 있다.
+                alert("jQuery를 이용한 클릭 이벤트 발생");
+            });
+        });
+    </script>
+
+
+</head>
+<body>
+<!--html이벤트 처리기를 사용한 이벤트-->
+
+<div class = "container">
+    <div id ="div01">
+        <button class="btn-primary" onclick="alert('inline방식으로 클릭 이벤트 발생')">inline 방식 이벤트</button>
+    </div>
+    <button class="btn btn-primary" onclick="popupAlert()">inline방식에서 함수 호출</button>
+</div>
+<hr>
+<div id="div02">
+    <button class="btn btn-success" id="btn03">dom 객체를 사용한 방식</button>
+    <div style="width: 200px; height: 200px; border: 1px dashed black; background-color: cornflowerblue;
+    margin-top:5px" id="sub-div">
+    </div>
+    <hr>
+    <div id="div03">
+        <button id="btn04" class="btn btn-info">jQuery를 사용한이벤트</button>
+    </div>
+</div>
+
+<script>
+    function popupAlert(){
+        alert("inline방식으로 클릭이벤트 발생\n함수 호출하기");
+    }
+
+
+</script>
+
+</body>
+</html>
